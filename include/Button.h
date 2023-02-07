@@ -22,8 +22,8 @@ public:
 	sf::RectangleShape get_button_shape() const;
 
 	sf::Text get_button_text() const;
+	
 private:
-
 	sf::RectangleShape m_shape;
 	sf::Text m_button_text;
 };
