@@ -6,11 +6,15 @@ class Button : public sf::Drawable
 public:
 	Button();
 
+
 	Button(sf::Text text, sf::Vector2f size, sf::Vector2f position);
+
 
 	Button& operator=(Button other);
 
+
 	bool is_clicked(sf::Vector2f mouse_position);
+
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
@@ -19,7 +23,9 @@ public:
 		target.draw(m_button_text);
 	}
 
+
 	sf::RectangleShape get_button_shape() const;
+
 
 	sf::Text get_button_text() const;
 	

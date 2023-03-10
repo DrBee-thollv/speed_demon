@@ -22,15 +22,26 @@ Button& Button::operator=(Button other)
 	return *this;
 }
 
+
+void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+		// You can draw other high-level objects
+		target.draw(m_shape);
+		target.draw(m_button_text);
+}
+
+
 bool Button::is_clicked(sf::Vector2f mouse_position)
 {
 	return (m_shape.getGlobalBounds().contains(mouse_position)) ? true : false;
 }
 
+
 sf::RectangleShape Button::get_button_shape() const
 {
 	return m_shape;
 }
+
 
 sf::Text Button::get_button_text() const
 {
