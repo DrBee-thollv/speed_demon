@@ -7,7 +7,7 @@ public:
 
 	sf::RectangleShape get_enemy_position();
 	
-	void move(float elapsedTime, float dt);
+	void move(float elapsedTime, float dt, float player_impact);
 
 	void spawn();
 

@@ -1,2 +1,2 @@
-# speed_demon
+# Speed Demon
 SFML Game where you dodge incoming projectiles.
