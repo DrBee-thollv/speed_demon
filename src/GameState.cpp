@@ -6,7 +6,7 @@ HomeScreen::HomeScreen(GameInstance* game)
 {
     this->m_game_instance = game;
 
-    this->m_title_text = std::make_unique<SD_Text>("SPEED\nDEMON", 100, sf::Vector2f(game->m_game_window.getSize().x / 2, 
+    this->m_title_text = std::make_unique<Text>("SPEED\nDEMON", 100, sf::Vector2f(game->m_game_window.getSize().x / 2, 
                                                                                      game->m_game_window.getSize().y / 3));
 
     this->m_play_button = std::make_unique<Button>("Play", 65,
@@ -53,7 +53,7 @@ GameOver::GameOver(GameInstance* game)
 {
     this->m_game_instance = game;
 
-    this->m_game_over_text = std::make_unique<SD_Text>("GAME OVER", 100, 
+    this->m_game_over_text = std::make_unique<Text>("GAME OVER", 100, 
                                                           sf::Vector2f(game->m_game_window.getSize().x / 2, 
                                                                        game->m_game_window.getSize().y / 3));
 
@@ -104,7 +104,7 @@ MainGameLoop::MainGameLoop(GameInstance* game)
 {
     this->m_game_instance = game;
 
-    m_score = std::make_unique<SD_Text>("0", 25, sf::Vector2f(game->m_game_window.getSize().x / 2.0, 25));
+    m_score = std::make_unique<Text>("0", 25, sf::Vector2f(game->m_game_window.getSize().x / 2.0, 25));
 
     m_elapsed_time.restart();
 }

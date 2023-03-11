@@ -37,7 +37,7 @@ public:
 	void draw();
 
 private:
-	std::unique_ptr<SD_Text> m_title_text;
+	std::unique_ptr<Text> m_title_text;
 	std::unique_ptr<Button> m_play_button;
 	std::unique_ptr<Button> m_exit_button;
 };
@@ -58,7 +58,7 @@ public:
 	void draw();
 
 private:
-	std::unique_ptr<SD_Text> m_game_over_text;
+	std::unique_ptr<Text> m_game_over_text;
 	std::unique_ptr<Button> m_play_again_button;
 	std::unique_ptr<Button> m_exit_button;
 };
@@ -79,7 +79,7 @@ public:
 	void draw();
 
 private:
-	std::unique_ptr<SD_Text> m_score;
+	std::unique_ptr<Text> m_score;
 	Enemy m_enemies[15];
 	Player m_player;
 	sf::Clock m_elapsed_time;

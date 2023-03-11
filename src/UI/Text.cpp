@@ -1,24 +1,24 @@
 #include "UI/Text.hpp"
 #include <iostream>
 
-SD_Text::SD_Text()
+Text::Text()
 {}
 
 
-SD_Text::SD_Text(std::string text, int size)
+Text::Text(std::string text, int size)
 {
     setup_text_field(text, size);
 }
 
 
-SD_Text::SD_Text(std::string text, int size, sf::Vector2f position)
+Text::Text(std::string text, int size, sf::Vector2f position)
 {
     setup_text_field(text, size);
     m_text.setPosition(position);
 }
 
 
-void SD_Text::setup_text_field(std::string text, int size)
+void Text::setup_text_field(std::string text, int size)
 {
     if (!m_font.loadFromFile("P:\\sfml_assets\\fast99.ttf"))
     {
@@ -33,7 +33,7 @@ void SD_Text::setup_text_field(std::string text, int size)
 }
 
 
-SD_Text::SD_Text(const SD_Text& copy)
+Text::Text(const Text& copy)
     :
     m_text(copy.get_sf_text()),
     m_font(copy.get_font())
@@ -41,7 +41,7 @@ SD_Text::SD_Text(const SD_Text& copy)
 }
 
 
-SD_Text& SD_Text::operator=(const SD_Text& rhs)
+Text& Text::operator=(const Text& rhs)
 {
     this->m_text = rhs.get_sf_text();
     this->m_font = rhs.get_font();
@@ -49,29 +49,29 @@ SD_Text& SD_Text::operator=(const SD_Text& rhs)
 }
 
 
-void SD_Text::set_position(sf::Vector2f position)
+void Text::set_position(sf::Vector2f position)
 {
     m_text.setPosition(position);
 }
 
 
-void SD_Text::set_string(std::string text)
+void Text::set_string(std::string text)
 {
     m_text.setString(text);
 }
 
 
-const sf::Text SD_Text::get_sf_text() const
+const sf::Text Text::get_sf_text() const
 {
     return m_text;
 }
 
-const sf::Font SD_Text::get_font() const
+const sf::Font Text::get_font() const
 {
     return m_font;
 }
 
-const sf::FloatRect SD_Text::get_bounds() const
+const sf::FloatRect Text::get_bounds() const
 {
     return m_text.getLocalBounds();
 }

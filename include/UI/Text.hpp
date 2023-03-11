@@ -1,22 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class SD_Text : public sf::Drawable
+class Text : public sf::Drawable
 {
 public:
-    SD_Text();
+    Text();
 
 
-    SD_Text(std::string text, int size);
+    Text(std::string text, int size);
 
 
-    SD_Text(std::string text, int size, sf::Vector2f position);
+    Text(std::string text, int size, sf::Vector2f position);
 
 
-    SD_Text(const SD_Text& copy);
+    Text(const Text& copy);
 
 
-    SD_Text& operator=(const SD_Text& rhs);
+    Text& operator=(const Text& rhs);
 
 
     void draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -9,7 +9,7 @@ public:
 	Button();
 
 
-	Button(SD_Text text, sf::Vector2f position);
+	Button(Text text, sf::Vector2f position);
 
 
 	Button(std::string text, int text_size, sf::Vector2f position);
@@ -32,10 +32,10 @@ public:
 	sf::RectangleShape get_button_shape() const;
 
 
-	SD_Text get_button_text() const;
+	Text get_button_text() const;
 	
 private:
 	sf::RectangleShape m_shape;
-	SD_Text m_button_text;
+	Text m_button_text;
 };
 

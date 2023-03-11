@@ -5,7 +5,7 @@ Button::Button()
 }
 
 
-Button::Button(SD_Text text, sf::Vector2f position)
+Button::Button(Text text, sf::Vector2f position)
 	:
 	m_button_text(text)
 {
@@ -22,7 +22,7 @@ Button::Button(SD_Text text, sf::Vector2f position)
 
 Button::Button(std::string text, int text_size, sf::Vector2f position)
 	:
-	m_button_text(SD_Text(text, text_size))
+	m_button_text(Text(text, text_size))
 {
 	m_button_text.set_position(position);
 	sf::FloatRect text_rect = m_button_text.get_bounds();
@@ -56,7 +56,7 @@ sf::RectangleShape Button::get_button_shape() const
 }
 
 
-SD_Text Button::get_button_text() const
+Text Button::get_button_text() const
 {
 	return m_button_text;
 }
