@@ -6,15 +6,16 @@ HomeScreen::HomeScreen(GameInstance* game)
 {
     this->m_game_instance = game;
 
-    this->m_title_text = std::make_unique<Text>("SPEED\nDEMON", 100, sf::Vector2f(game->m_game_window.getSize().x / 2, 
-                                                                                     game->m_game_window.getSize().y / 3));
+    this->m_title_text = std::make_unique<Text>("SPEED\nDEMON", 100, 
+                                                sf::Vector2f(game->m_game_window.getSize().x / 2,
+                                                             game->m_game_window.getSize().y / 3));
 
-    this->m_play_button = std::make_unique<Button>("Play", 65,
-                                                    sf::Vector2f((game->m_game_window.getSize().x / 2.0) - 200,
+    this->m_play_button = std::make_unique<Button>("Play", 65, 
+                                                   sf::Vector2f((game->m_game_window.getSize().x / 2.0) - 200,
                                                                  game->m_game_window.getSize().y / 2.0));
 
     this->m_exit_button = std::make_unique<Button>("Exit", 65,
-                                                    sf::Vector2f((game->m_game_window.getSize().x / 2.0) + 200,
+                                                   sf::Vector2f((game->m_game_window.getSize().x / 2.0) + 200,
                                                                  game->m_game_window.getSize().y / 2.0));
 }
 
