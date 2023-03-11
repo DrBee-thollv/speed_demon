@@ -10,9 +10,9 @@ sf::RectangleShape Enemy::get_enemy_position()
 	return m_shape;
 }
 
-void Enemy::move(float elapsedTime, float dt)
+void Enemy::move(float elapsedTime, float dt, float player_impact)
 {
-	if (m_moving) m_shape.move(-(elapsedTime / 0.01) * dt, 0);
+	if (m_moving) m_shape.move(-(elapsedTime / (0.01 * player_impact)) * dt, 0);
 }
 
 void Enemy::spawn()

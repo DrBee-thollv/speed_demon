@@ -157,7 +157,7 @@ void MainGameLoop::update(sf::Time dt)
     for (int idx = 0; idx < 10; idx++)
     {
         m_enemies[idx].spawn();
-        m_enemies[idx].move(m_elapsed_time.getElapsedTime().asSeconds(), dt.asSeconds());
+        m_enemies[idx].move(m_elapsed_time.getElapsedTime().asSeconds(), dt.asSeconds(), m_player.get_player_size_percentage());
         auto enemy_global_position = m_enemies[idx].get_enemy_position().getGlobalBounds();
         if (enemy_global_position.left < 0)
         {

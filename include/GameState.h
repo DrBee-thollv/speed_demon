@@ -9,8 +9,6 @@
 class GameState
 {
 public:
-
-
 	virtual void process_events() = 0;
 
 
@@ -27,8 +25,6 @@ protected:
 class HomeScreen : public GameState
 {
 public:
-
-
 	HomeScreen(GameInstance* game);
 
 
@@ -53,6 +49,7 @@ class GameOver : public GameState
 public:
 	GameOver(GameInstance* game);
 
+
 	void process_events();
 
 
@@ -73,6 +70,7 @@ class MainGameLoop : public GameState
 {
 public:
 	MainGameLoop(GameInstance* game);
+
 
 	void process_events();
 

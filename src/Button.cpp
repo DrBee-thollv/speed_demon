@@ -22,15 +22,18 @@ Button& Button::operator=(Button other)
 	return *this;
 }
 
+
 bool Button::is_clicked(sf::Vector2f mouse_position)
 {
 	return (m_shape.getGlobalBounds().contains(mouse_position)) ? true : false;
 }
 
+
 sf::RectangleShape Button::get_button_shape() const
 {
 	return m_shape;
 }
+
 
 sf::Text Button::get_button_text() const
 {

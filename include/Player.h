@@ -12,6 +12,8 @@ public:
 
 	void set_shrink();
 
+	const float get_player_size_percentage() const;
+
 private:
 	sf::RectangleShape m_shape = sf::RectangleShape(sf::Vector2f(50.0f, 100.0f));
 	bool m_grow_player;
