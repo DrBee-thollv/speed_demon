@@ -17,11 +17,11 @@ public:
 
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const
-	{
+{
 		// You can draw other high-level objects
 		target.draw(m_shape);
 		target.draw(m_button_text);
-	}
+}
 
 
 	sf::RectangleShape get_button_shape() const;
