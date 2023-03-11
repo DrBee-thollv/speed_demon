@@ -1,5 +1,5 @@
-#include "GameInstance.h"
-#include "GameState.h"
+#include "GameInstance.hpp"
+#include "GameState.hpp"
 
 int main()
 {
