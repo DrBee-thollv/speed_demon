@@ -9,20 +9,19 @@ Button::Button(Text text, sf::Vector2f position)
 	:
 	m_button_text(text)
 {
-	m_button_text.set_position(position);
-	sf::FloatRect text_rect = m_button_text.get_bounds();
-
-	m_shape.setSize(sf::Vector2f(text_rect.getSize().x + 10, text_rect.getSize().y + 10));
-	sf::FloatRect button_rect = m_shape.getLocalBounds();
-	m_shape.setOrigin(button_rect.left + button_rect.width / 2.0f, button_rect.top  + button_rect.height / 2.0f);
-	m_shape.setPosition(position);
-	m_shape.setFillColor(sf::Color::Red);
+	setup_button(position);
 }
 
 
 Button::Button(std::string text, int text_size, sf::Vector2f position)
 	:
 	m_button_text(Text(text, text_size))
+{
+	setup_button(position);
+}
+
+
+void Button::setup_button(sf::Vector2f position)
 {
 	m_button_text.set_position(position);
 	sf::FloatRect text_rect = m_button_text.get_bounds();

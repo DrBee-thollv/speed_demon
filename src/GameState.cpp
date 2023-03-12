@@ -19,6 +19,7 @@ HomeScreen::HomeScreen(GameInstance* game)
                                                                  game->m_game_window.getSize().y / 2.0));
 }
 
+
 void HomeScreen::process_events()
 {
     sf::Event event;
@@ -26,21 +27,20 @@ void HomeScreen::process_events()
     {
         if (event.type == sf::Event::MouseButtonReleased)
         {
-            if (m_play_button->is_clicked(this->m_game_instance->m_game_window.mapPixelToCoords(sf::Mouse::getPosition(this->m_game_instance->m_game_window))))
-            {
+            if (m_play_button->is_clicked(this->m_game_instance->get_mouse_position()))
                 this->m_game_instance->m_next_state = new MainGameLoop(this->m_game_instance);
-            }
-            if (m_exit_button->is_clicked(this->m_game_instance->m_game_window.mapPixelToCoords(sf::Mouse::getPosition(this->m_game_instance->m_game_window))))
-            {
+            
+            if (m_exit_button->is_clicked(this->m_game_instance->get_mouse_position()))
                 this->m_game_instance->m_game_window.close();
-            }
         }
     }
 }
 
+
 void HomeScreen::update(sf::Time dt)
 {
 }
+
 
 void HomeScreen::draw()
 {
@@ -50,13 +50,14 @@ void HomeScreen::draw()
 }
 
 
+
 GameOver::GameOver(GameInstance* game)
 {
     this->m_game_instance = game;
 
     this->m_game_over_text = std::make_unique<Text>("GAME OVER", 100, 
-                                                          sf::Vector2f(game->m_game_window.getSize().x / 2, 
-                                                                       game->m_game_window.getSize().y / 3));
+                                                    sf::Vector2f(game->m_game_window.getSize().x / 2, 
+                                                                 game->m_game_window.getSize().y / 3));
 
     this->m_play_again_button = std::make_unique<Button>("Play Again", 65,
                                                          sf::Vector2f((game->m_game_window.getSize().x / 2.0) - 400, 
@@ -67,6 +68,7 @@ GameOver::GameOver(GameInstance* game)
                                                                 game->m_game_window.getSize().y / 2.0));
 }
 
+
 void GameOver::process_events()
 {   
     sf::Event event;
@@ -74,21 +76,20 @@ void GameOver::process_events()
     {
         if (event.type == sf::Event::MouseButtonReleased)
         {
-            if (m_play_again_button->is_clicked(this->m_game_instance->m_game_window.mapPixelToCoords(sf::Mouse::getPosition(this->m_game_instance->m_game_window))))
-            {
+            if (m_play_again_button->is_clicked(this->m_game_instance->get_mouse_position()))
                 this->m_game_instance->m_next_state = new MainGameLoop(this->m_game_instance);
-            }
-            if (m_exit_button->is_clicked(this->m_game_instance->m_game_window.mapPixelToCoords(sf::Mouse::getPosition(this->m_game_instance->m_game_window))))
-            {
+            
+            if (m_exit_button->is_clicked(this->m_game_instance->get_mouse_position()))
                 this->m_game_instance->m_game_window.close();
-            }
         }
     }
 }
 
+
 void GameOver::update(sf::Time dt)
 {
 }
+
 
 void GameOver::draw()
 {
@@ -98,10 +99,12 @@ void GameOver::draw()
 }
 
 
+
 MainGameLoop::MainGameLoop(GameInstance* game)
     :
     m_player(Player()),
-    m_enemies{Enemy(), Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy() ,Enemy()}
+    m_enemies{Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), 
+              Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), Enemy(), Enemy()}
 {
     this->m_game_instance = game;
 
@@ -110,11 +113,13 @@ MainGameLoop::MainGameLoop(GameInstance* game)
     m_elapsed_time.restart();
 }
 
+
 void MainGameLoop::process_events()
 {
     sf::Event event;
     while (this->m_game_instance->m_game_window.pollEvent(event))
     {
+        // Sets grow or shrink high until mouse button is released.
         if (event.type == sf::Event::MouseButtonPressed)
         {
             if (event.mouseButton.button == sf::Mouse::Button::Left)
@@ -132,33 +137,39 @@ void MainGameLoop::process_events()
     }
 }
 
+
 void MainGameLoop::update(sf::Time dt)
-{
-    for (int idx = 0; idx < 10; idx++)
+{   
+    /* For each enemy, move them the correct amount depending on size of player, if the enemy moves off
+       screen reset it to the beginning, then check for any intersection with player.
+    */
+    for (int idx = 0; idx < 15; idx++)
     {
         m_enemies[idx].spawn();
         m_enemies[idx].move(m_elapsed_time.getElapsedTime().asSeconds(), dt.asSeconds(), m_player.get_player_size_percentage());
         auto enemy_global_position = m_enemies[idx].get_enemy_position().getGlobalBounds();
+
         if (enemy_global_position.left < 0)
-        {
             m_enemies[idx].reset();
-        }
+        
         if (enemy_global_position.intersects(m_player.get_player_position().getGlobalBounds()))
-        {
             this->m_game_instance->m_next_state = new GameOver(this->m_game_instance);
-        }
+        
     }
     
+    // Update the players position at the same rate as the enemies to avoid weird performance.
     m_player_position = m_player.get_player_position();
+
+    // Score is reported as an integer.
     m_score->set_string(std::to_string((int)std::floor(m_elapsed_time.getElapsedTime().asSeconds())));
 }
+
 
 void MainGameLoop::draw()
 {
     this->m_game_instance->m_game_window.draw(*m_score);
     this->m_game_instance->m_game_window.draw(m_player_position);
+
     for (int idx = 0; idx < 15; idx++)
-    {
         this->m_game_instance->m_game_window.draw(m_enemies[idx].get_enemy_position());
-    }
 }
